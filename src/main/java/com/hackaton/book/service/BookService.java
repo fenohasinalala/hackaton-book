@@ -32,12 +32,18 @@ public class BookService {
     }
 
     public void updateBook(Long id ,Book newBook){
-        Optional<Book> thisBook = bookRepository.findByIdBook(id);
-        thisBook.get().setTitle(newBook.getTitle());
-        thisBook.get().setCategory(newBook.getCategory());
-        thisBook.get().setAuthor(newBook.getAuthor());
-        thisBook.get().setSynopsis(newBook.getSynopsis());
-        thisBook.get().setPages(newBook.getPages());
+        List<Book> allBooks = bookRepository.findAll();
+
+        for(Book book : allBooks){
+            if(book.getIdBook() == id){
+                book.setPages(newBook.getPages());
+                book.setAuthor(newBook.getAuthor());
+                book.setCategory(newBook.getCategory());
+                book.setSynopsis(newBook.getSynopsis());
+                book.setTitle(newBook.getTitle());
+                bookRepository.save(book);
+            }
+        }
     }
 
     public void deleteBookById(Long id){
