@@ -15,12 +15,8 @@ import java.util.Optional;
 public class BookService {
     private BookRepository bookRepository;
 
-    public List<Book> getAllBooks(int page, int pageSize){
-        if(page != 0 && pageSize != 0){
-            return (List<Book>) bookRepository.findAll(PageRequest.of(page, pageSize));
-        } else {
-            return bookRepository.findAll();
-        }
+    public List<Book> getAllBooks(){
+       return bookRepository.findAll();
     }
 
     public Optional<Book> getBookById(Long id){

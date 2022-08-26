@@ -15,11 +15,8 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping("/books")
-    public List<Book> getAllBook(
-            @RequestParam(name = "page")int page,
-            @RequestParam(name = "page_size")int pageSize)
-    {
-        return bookService.getAllBooks(page, pageSize);
+    public List<Book> getAllBook(){
+        return bookService.getAllBooks();
     }
 
     @GetMapping("/books/{id}")
