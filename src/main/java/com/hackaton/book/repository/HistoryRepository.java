@@ -1,6 +1,5 @@
 package com.hackaton.book.repository;
 
-import com.hackaton.book.model.Category;
 import com.hackaton.book.model.History;
 import org.springframework.data.jpa.repository.JpaRepository;
 
