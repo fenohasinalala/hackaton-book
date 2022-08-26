@@ -1,21 +1,3 @@
-CREATE TABLE IF NOT EXISTS category(
-   Id_category SERIAL,
-   name_category VARCHAR(100)  NOT NULL,
-   PRIMARY KEY(Id_category),
-   UNIQUE(name_category)
-);
-
-CREATE TABLE IF NOT EXISTS book(
-   Id_book SERIAL,
-   title VARCHAR(100)  NOT NULL,
-   author VARCHAR(100)  NOT NULL,
-   pages INTEGER,
-   synopsis TEXT,
-   Id_category INTEGER NOT NULL,
-   PRIMARY KEY(Id_book),
-   FOREIGN KEY(Id_category) REFERENCES category(Id_category)
-);
-
 insert into category (name_category)
 	values
 ('Drama'),
@@ -129,3 +111,27 @@ insert into book (title, author, pages, synopsis, category_id_category)
 ('Autumn Spring', 'Gifford Kynton', 241, 'In hac habitasse platea dictumst.', 7),
 ('Adulthood', 'Elnore Aldersley', 103, 'In quis justo.', 1),
 ('Crazy Beautiful You', 'Merralee Simioni', 192, 'Nam tristique tortor eu pede.', 1);
+
+insert into history (available, date_history, book_id_book)
+	values 
+(true, '2022/08/25', 3),
+(false, '2022/08/25', 34),
+(true, '2022/07/18', 10),
+(false, '2022/07/26', 92),
+(false, '2022/07/05', 38),
+(true, '2022/08/18', 54),
+(true, '2022/08/07', 42),
+(true, '2022/08/03', 37),
+(true, '2022/08/06', 34),
+(false, '2022/07/29', 9),
+(true, '2022/08/13', 92),
+(true, '2022/07/05', 72),
+(false, '2022/08/01', 55),
+(true, '2022/07/01', 96),
+(false, '2022/07/30', 3),
+(false, '2022/08/23', 32),
+(false, '2022/07/13', 86),
+(false, '2022/08/24', 40),
+(false, '2022/08/20', 20),
+(false, '2022/08/16', 98),
+(false, '2022/08/17', 36);
