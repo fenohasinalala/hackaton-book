@@ -39,13 +39,12 @@ public class CategoryService {
         List<Category> categories = allCategory();
         for(Category categoryInfo : categories){
             if(categoryInfo.getIdCategory() == id){
-                categoryInfo.setNameCategory(newCategory.getNameCategory());
+                if (!(newCategory.getNameCategory() == null)){
+                    categoryInfo.setNameCategory(newCategory.getNameCategory());
+                }
                 repository.save(categoryInfo);
-            }else{
-            throw new NullPointerException("sorry you have a problem in:");
             }
         }
-
     }
 
     //PATCH MAPPING
