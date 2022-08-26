@@ -35,7 +35,7 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public void insertBook(Book book){
+    public void insertBook(@RequestBody Book book){
         bookService.insertBook(book);
     }
 
