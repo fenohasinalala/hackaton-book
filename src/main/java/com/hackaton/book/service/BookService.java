@@ -16,12 +16,12 @@ import java.util.Optional;
 public class BookService {
     private BookRepository bookRepository;
 
-    public Page<Book> getAllBooks(Long page, Long pageSize){
+    public List<Book> getAllBooks(Long page, Long pageSize){
         if(page != null && pageSize != null){
             Pageable pageable = PageRequest.of(Math.toIntExact(page), Math.toIntExact(pageSize));
-            return bookRepository.findAll(pageable);
+            return (List<Book>) bookRepository.findAll(pageable);
         }else {
-            return (Page<Book>) bookRepository.findAll();
+            return bookRepository.findAll();
         }
     }
 
