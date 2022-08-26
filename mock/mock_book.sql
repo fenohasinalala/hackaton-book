@@ -1,6 +1,21 @@
-create table category (
-	name_category VARCHAR(100)
+CREATE TABLE IF NOT EXISTS category(
+   Id_category SERIAL,
+   name_categorie VARCHAR(100)  NOT NULL,
+   PRIMARY KEY(Id_category),
+   UNIQUE(name_category)
 );
+
+CREATE TABLE NOT EXISTS book(
+   Id_book SERIAL,
+   title VARCHAR(100)  NOT NULL,
+   author VARCHAR(100)  NOT NULL,
+   pages INTEGER,
+   synopsis TEXT,
+   Id_category INTEGER NOT NULL,
+   PRIMARY KEY(Id_book),
+   FOREIGN KEY(Id_category) REFERENCES category(Id_category)
+);
+
 insert into category (name_category) 
 	values 
 ('Drama'),
@@ -12,15 +27,6 @@ insert into category (name_category)
 ('Horror'),
 ('SciFi'),
 ('FilmNoir');
-
-
-create table book (
-	title VARCHAR(100),
-	author VARCHAR(100),
-	pages INT,
-	synopsis TEXT,
-	id_category INT
-);
 
 insert into book (title, author, pages, synopsis, category_id_category) 
 	values 
