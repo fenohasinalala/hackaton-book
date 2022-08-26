@@ -16,7 +16,7 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping("/books")
-    public Page<Book> getAllBook(
+    public List<Book> getAllBook(
             @RequestParam(name = "page")Long page,
             @RequestParam(name = "page_size")Long pageSize)
     {
