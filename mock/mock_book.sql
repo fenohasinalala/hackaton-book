@@ -22,7 +22,7 @@ create table book (
 	id_category INT
 );
 
-insert into book (title, author, pages, synopsis, id_category) 
+insert into book (title, author, pages, synopsis, category_id_category) 
 	values 
 ('Trouble at Timpetill', 'Chelsey Madill', 321, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', 6),
 ('A Fugitive from the Past', 'Elladine Devine', 140, 'Morbi ut odio.', 7),
