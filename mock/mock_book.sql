@@ -1,11 +1,11 @@
 CREATE TABLE IF NOT EXISTS category(
    Id_category SERIAL,
-   name_categorie VARCHAR(100)  NOT NULL,
+   name_category VARCHAR(100)  NOT NULL,
    PRIMARY KEY(Id_category),
    UNIQUE(name_category)
 );
 
-CREATE TABLE NOT EXISTS book(
+CREATE TABLE IF NOT EXISTS book(
    Id_book SERIAL,
    title VARCHAR(100)  NOT NULL,
    author VARCHAR(100)  NOT NULL,
@@ -16,8 +16,8 @@ CREATE TABLE NOT EXISTS book(
    FOREIGN KEY(Id_category) REFERENCES category(Id_category)
 );
 
-insert into category (name_category) 
-	values 
+insert into category (name_category)
+	values
 ('Drama'),
 ('Crime'),
 ('Comedy'),
@@ -28,8 +28,8 @@ insert into category (name_category)
 ('SciFi'),
 ('FilmNoir');
 
-insert into book (title, author, pages, synopsis, category_id_category) 
-	values 
+insert into book (title, author, pages, synopsis, category_id_category)
+	values
 ('Trouble at Timpetill', 'Chelsey Madill', 321, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', 6),
 ('A Fugitive from the Past', 'Elladine Devine', 140, 'Morbi ut odio.', 7),
 ('Late Autumn', 'Jeremiah Tall', 262, 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.', 8),
