@@ -135,3 +135,8 @@ insert into history (available, date_history, book_id_book)
 (false, '2022/08/20', 20),
 (false, '2022/08/16', 98),
 (false, '2022/08/17', 36);
+
+INSERT INTO roles(name) VALUES
+('ROLE_USER'),
+('ROLE_MODERATOR'),
+('ROLE_ADMIN');

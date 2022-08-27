@@ -15,27 +15,27 @@ public class CategoryController {
     private CategoryService service;
 
     @GetMapping("/categories")
-    public List<Category> getAllCategories(@RequestParam(name = "name", required = false)String name){
-        if(name != null){
-            return service.getCategoryByName(name);
-        }else{
-            return service.allCategory();
-        }
-    }
+    public List<Category> getAllCategories(
+            @RequestParam(name = "page", required = false)Long page,
+            @RequestParam(name = "page_size", required = false)Long page_size,
+            @RequestParam(name = "name", required = false)String name
 
+    ){
+        return service.redirectingRequest(page, page_size,name);
+    }
     @GetMapping("/categories/{id}")
     public Optional<Category> getCategoryById(@PathVariable Long id){
         return service.getCategoryById(id);
     }
 
     @PostMapping("/categories")
-    public void insertCategory(@RequestBody Category category){
-        service.insertCategory(category);
+    public Category insertCategory(@RequestBody Category category){
+        return service.insertCategory(category);
     }
 
     @DeleteMapping("/categories/{id}")
-    public void deleteId(@PathVariable(name = "id")Long id){
-        service.deleteById(id);
+    public String deleteId(@PathVariable(name = "id")Long id){
+        return service.deleteById(id);
     }
 
     @PutMapping("/categories/{id}")

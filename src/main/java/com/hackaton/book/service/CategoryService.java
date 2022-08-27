@@ -3,6 +3,8 @@ package com.hackaton.book.service;
 import com.hackaton.book.model.Category;
 import com.hackaton.book.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,26 @@ public class CategoryService {
     private CategoryRepository repository;
 
     //GET MAPPING
+    public List<Category> redirectingRequest(Long page, Long page_size, String name){
+        if(name != null){
+            if (page== null && page_size==null) {
+                return this.getCategoryByName(name);
+            }
+        }else if (page!= null && page_size==null) {
+            return this.getCategoriesBySpecificPage(page, 1L);
+        }else if (page != null) {
+            return this.getCategoriesBySpecificPage(page, page_size);
+        }
+        return this.allCategory();
+    }
+    public List<Category> getCategoriesBySpecificPage(Long page, Long pageSize){
+        if(page != null && pageSize != null){
+            Pageable pageable = PageRequest.of(Math.toIntExact(page-1), Math.toIntExact(pageSize));
+            return repository.findAll(pageable).toList();
+        }else {
+            return repository.findAll();
+        }
+    }
     public List<Category> allCategory(){
         return repository.findAll();
     }
@@ -25,13 +47,14 @@ public class CategoryService {
     }
 
     //POST MAPPING
-    public void insertCategory(Category category){
-        repository.save(category);
+    public Category insertCategory(Category category){
+        return repository.save(category);
     }
 
     //DELETE MAPPING
-    public void deleteById(Long id){
+    public String deleteById(Long id){
         repository.deleteById(id);
+        return "Item deleted successfully";
     }
 
     //PUT MAPPING
